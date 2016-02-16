@@ -116,6 +116,12 @@ def output_nagios(name, timestamp, metrics, arguments, check_id, state_code_str)
                     perfdata2string(metric, value, '%', min=0, max=100)
                 )
 
+            #  General availabilty ( Ok: 0 Warning: 1 Critical: 2 )
+            if metric in ('webtest_state'):
+                perfdata.append(
+                    perfdata2string(metric, value, min=0, max=2)
+                )
+
             elif metric in ('webtesttime'):
                 perfdata.append(
                     perfdata2string(metric, value, 'ms', min=0)
